@@ -11,6 +11,15 @@
             <i class="bi bi-justify fs-3"></i>
         </a>
     </header>
+    <div class="card-body">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+
+       
+    </div>
     <div class="page-heading">
         <h3>Profile Statistics</h3>
     </div>
@@ -64,7 +73,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">User Total</h6>
-                                        <h6 class="font-extrabold mb-0">{{ Auth::user()->name }}</h6>
+                                        <h6 class="font-extrabold mb-0">{{ Auth::user()->count() }}</h6>
                                     </div>
                                 </div>
                             </div>

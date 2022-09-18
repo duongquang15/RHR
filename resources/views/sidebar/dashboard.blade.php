@@ -45,22 +45,22 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="" class='sidebar-link'>
+                    <a href="{{ route('changepass') }}" class='sidebar-link'>
                         <i class="bi bi-shield-lock"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
 
                 {{-- @if (Auth::user()->role_name=='Admin') --}}
-                    <li class="sidebar-title">Page &amp; Controller</li>
+                    
                     <li class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
-                            <span>Maintenain</span>
+                            <span>Quản lý User</span>
                         </a>
                         <ul class="submenu">
                             <li class="submenu-item">
-                                <a href="">User Control</a>
+                                <a href="{{ route('user.index') }}">User Control</a>
                             </li>
                             <li class="submenu-item">
                                 <a href="">User Activity Log</a>
@@ -72,7 +72,6 @@
                     </li>
                 {{-- @endif --}}
                 
-                <li class="sidebar-title">Forms &amp; Tables</li>
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-file-earmark-medical-fill"></i>
@@ -102,14 +101,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                   
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form1').submit();">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <p>LOGOUT</p> 
-                        </a>
-                        <form id="logout-form1" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form1').submit();">
+                        <i class="bi bi-box-arrow-right" style="margin-left: 1rem"></i>
+                        <p style="display:inline-block">Logout</p>
+                    </a>
+                    <form id="logout-form1" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>

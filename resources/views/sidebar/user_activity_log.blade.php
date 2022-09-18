@@ -96,11 +96,16 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('logout') }}" class='sidebar-link'>
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Log Out</span>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form1').submit();">
+                        <i class="bi bi-box-arrow-right" style="margin-left: 1rem"></i>
+                        <p style="display:inline-block">LOGOUT</p>
                     </a>
+                    <form id="logout-form1" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
+                
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
