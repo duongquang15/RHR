@@ -9,7 +9,7 @@ class Level extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'description',
+        'level_name', 'description',
     ];
     // function tickets(){
     //     return $this->hasMany('App\Ticket');

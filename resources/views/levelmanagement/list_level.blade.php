@@ -13,7 +13,8 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Quản lý User</h3>
+                    <h3>Quản lý Level</h3>
+                    {{-- <p class="text-subtitle text-muted">For user to check they list</p> --}}
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -26,7 +27,7 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User Mangement</li>
+                            <li class="breadcrumb-item active" aria-current="page">Level Mangement</li>
                         </ol>
                     </nav>
                 </div>
@@ -37,15 +38,15 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    User Datatable
+                    Level Datatable
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Full Name</th>
-                                <th>Email Address</th>
+                                <th>Level Name</th>
+                                <th>Description</th>
                                 {{-- <th>Phone Number</th> --}}
                                 {{-- <th>Status</th>
                                 <th>Role Name</th> --}}
@@ -56,8 +57,8 @@
                             @foreach ($data as $key => $item)
                                 <tr>
                                     <td class="id">{{ ++$key }}</td>
-                                    <td class="name">{{ $item->name }}</td>
-                                    <td class="email">{{ $item->email }}</td>
+                                    <td class="name">{{ $item->level_name }}</td>
+                                    <td class="email">{{ $item->description }}</td>
                                     {{-- <td class="phone_number">{{ $item->phone_number }}</td> --}}
                                     {{-- @if($item->status =='Active')
                                     <td class="status"><span class="badge bg-success">{{ $item->status }}</span></td>
@@ -78,19 +79,19 @@
                                     <td class="role_name"><span  class=" badge bg-warning">{{ $item->role_name }}</span></td>
                                     @endif --}}
                                     <td class="text-center">
-                                        <a href="{{route('user.create')}}">
+                                        <a href="{{route('level.create')}}">
                                             <span class="badge bg-info"><i class="bi bi-person-plus-fill"></i></span>
                                         </a>
                                         {{-- <a href="{{ url('user/'.$item->id) }}"> --}}
-                                        <a href="user/{{ $item->id }}/edit">
+                                        <a href="level/{{ $item->id }}/edit">
                                             <span class="badge bg-success"><i class="bi bi-pencil-square"></i></span>
                                         </a>  
                                         
                                         {{-- <a href="user/{{ $item->id }}" onclick="return confirm('Are you sure to want to delete it?')"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></a> --}}
-                                        <form action="{{ route('user.destroy', $item->id) }}" type="submit" method='post' style="display:inherit" >
+                                        <form action="{{ route('level.destroy', $item->id) }}" type="submit" method='post' style="display:inherit" >
                                             @csrf
                                             @method('delete')
-                                          <button  type="submit" style="border:none;padding:0;background: none;"!important><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button>
+                                          <button  type="submit" style="border:none;padding:0;background: none;"!important onclick="return confirm('Are you sure to want to delete it?')"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button>
                                         </form>
                                     </td>
                                 </tr>

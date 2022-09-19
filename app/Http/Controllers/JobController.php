@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Level;
+
+use App\Models\Job;
 use Illuminate\Http\Request;
 
-class LevelController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,8 @@ class LevelController extends Controller
      */
     public function index()
     {
-        $data = Level::orderBy('created_at', 'ASC')->get();
-        return view('levelmanagement.list_level', compact('data'));
+        $data = Job::orderBy('created_at', 'ASC')->get();
+        return view('jobmanagement.list_job', compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class LevelController extends Controller
      */
     public function create()
     {
-        return view('levelmanagement.add_new_level');
+        //
     }
 
     /**
@@ -35,8 +36,7 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
-        Level::create($request->all());
-        return redirect()->route('level.index')->with('success', 'Thêm mới level thành công');
+        //
     }
 
     /**
@@ -58,8 +58,7 @@ class LevelController extends Controller
      */
     public function edit($id)
     {
-        $data = Level::query()->where('id',$id)->get();
-        return view('levelmanagement.view_level', compact('data'));
+        //
     }
 
     /**
@@ -69,10 +68,9 @@ class LevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Level $level)
+    public function update(Request $request, $id)
     {
-        $level->update($request->only('level_name','description'));
-        return redirect()->route('level.index')->with('success', 'Cập nhật level thành công');
+        //
     }
 
     /**
@@ -81,9 +79,8 @@ class LevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Level $level)
+    public function destroy($id)
     {
-        $level->delete();
-        return redirect()->route('level.index')->with('success', 'Xóa level thành công');
+        //
     }
 }

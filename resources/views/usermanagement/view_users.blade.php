@@ -25,14 +25,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>User Management View</h3>
-                    <p class="text-subtitle text-muted">For user to check they list</p>
+                    <h3>Quản lý User</h3>
+                   
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User Mangement View</li>
+                            <li class="breadcrumb-item active" aria-current="page">User Mangement</li>
                         </ol>
                     </nav>
                 </div>
@@ -41,7 +41,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">User View Detial</h4>
+                    <h4 class="card-title">Cập nhật User</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">

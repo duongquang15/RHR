@@ -53,53 +53,32 @@
 
                 {{-- @if (Auth::user()->role_name=='Admin') --}}
                     
-                    <li class="sidebar-item  has-sub">
-                        <a href="#" class='sidebar-link'>
+                    
+                    <li class="sidebar-item">
+                        <a href="{{ route('user.index')}}" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
                             <span>Quản lý User</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item">
-                                <a href="{{ route('user.index') }}">User Control</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="">User Activity Log</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="">Activity Log</a>
-                            </li>
-                        </ul>
+                    </li>
+                    
+                    <li class="sidebar-item">
+                        <a href="{{ route('level.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Level Management</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="{{ route('job.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Job Management</span>
+                        </a>
                     </li>
                 {{-- @endif --}}
                 
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-medical-fill"></i>
-                        <span>Form Elements</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item active">
-                            <a href="">Staff Input</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-grid-1x2-fill"></i>
-                        <span>View Record</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item">
-                            <a href="">View Detail</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-lock-fill"></i>
-                        <span>Lock Screen</span>
-                    </a>
-                </li>
+                
+                
+                
                 <li class="sidebar-item">
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form1').submit();">
