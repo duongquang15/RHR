@@ -29,4 +29,6 @@ Route::resources([
     'user'=>'App\Http\Controllers\UserController',
     'level'=>'App\Http\Controllers\LevelController',
     'job'=>'App\Http\Controllers\JobController',
+    'candidate'=>'App\Http\Controllers\CandidateController',
+
 ]);

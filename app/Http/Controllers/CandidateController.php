@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use App\Models\Job;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class CandidateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        $data = Job::orderBy('created_at', 'ASC')->get();
-        return view('jobmanagement.list_job', compact('data'));
+        $data = Candidate::orderBy('created_at', 'ASC')->get();
+        return view('candidatemanagement.list_candidate', compact('data'));
     }
 
     /**
@@ -25,8 +24,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        $job=User::orderBy('name','ASC')->select('id','name')->get();
-        return view('jobmanagement.add_new_job', compact('job'));
+        return view('candidatemanagement.add_new_candidate');
     }
 
     /**
@@ -37,8 +35,8 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        Job::create($request->all());
-        return redirect()->route('job.index')->with('success', 'Thêm mới job thành công');
+        Candidate::create($request->all());
+        return redirect()->route('candidate.index')->with('success', 'Thêm mới ứng viên thành công');
     }
 
     /**
@@ -60,8 +58,8 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $data = Job::query()->where('id',$id)->get();
-        return view('jobmanagement.view_job', compact('data'));
+        $data = Candidate::query()->where('id',$id)->get();
+        return view('candidatemanagement.view_candidate', compact('data'));
     }
 
     /**
@@ -71,10 +69,10 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Job $job)
+    public function update(Request $request, Candidate $candidate)
     {
-        $job->update($request->all());
-        return redirect()->route('job.index')->with('success', 'Cập nhật job thành công');
+        $candidate->update($request->all());
+        return redirect()->route('candidate.index')->with('success', 'Cập nhật ứng viên thành công');
     }
 
     /**
@@ -83,9 +81,9 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Job $job)
+    public function destroy(Candidate $candidate)
     {
-        $job->delete();
-        return redirect()->route('job.index')->with('success', 'Xóa job thành công');
+        $candidate->delete();
+        return redirect()->route('candidate.index')->with('success', 'Xóa ứng viên thành công');
     }
 }

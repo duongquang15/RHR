@@ -73,7 +73,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group has-icon-left">
                                             <div class="position-relative">
-                                                <input type="description" class="form-control"
+                                                <input type="text" class="form-control"
                                                     placeholder="Description" id="first-name-icon" name="description" value="{{ $data[0]->description }}">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-chat-square-dots"></i>

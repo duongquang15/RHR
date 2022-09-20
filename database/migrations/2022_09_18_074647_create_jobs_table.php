@@ -25,10 +25,10 @@ class CreateJobsTable extends Migration
             $table->string('name');
             $table->string('skill');
             $table->integer('user_id');
-            $table->integer('block_id');
-            $table->integer('company_id');
-            $table->integer('level_id');
-            $table->integer('group_id');
+            $table->integer('block_id')->default(1);
+            $table->integer('company_id')->default(1);
+            $table->integer('level_id')->default(1);
+            $table->integer('group_id')->default(1);
             $table->timestamps();
 
         });

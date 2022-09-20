@@ -64,14 +64,21 @@
                     <li class="sidebar-item">
                         <a href="{{ route('level.index') }}" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
-                            <span>Level Management</span>
+                            <span>Quản lý Level</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
                         <a href="{{ route('job.index') }}" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
-                            <span>Job Management</span>
+                            <span>Quản lý Job</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="{{ route('candidate.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Quản lý Candidate</span>
                         </a>
                     </li>
                 {{-- @endif --}}

@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Candidate extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'candidate_name','birthday','gender','phone','email','facebook','sent_date_cv','school','cv','note','skill','experience','current_salary','desired_salary','status',
+        ];
+}
