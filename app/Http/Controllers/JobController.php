@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Group;
+use App\Models\Calendar;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -14,8 +16,10 @@ class JobController extends Controller
      */
     public function index()
     {
+        $group=Group::all();
+        $calendar=Calendar::all();
         $data = Job::orderBy('created_at', 'ASC')->get();
-        return view('jobmanagement.list_job', compact('data'));
+        return view('jobmanagement.list_job', compact('data','calendar','group'));
     }
 
     /**

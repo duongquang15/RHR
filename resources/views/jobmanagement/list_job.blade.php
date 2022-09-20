@@ -35,25 +35,39 @@
         </div>
         {{-- message --}}
         {{-- {!! Toastr::message() !!} --}}
+        
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    Job Datatable
+                    <div style="margin-left: 0px">
+                        <a href="{{route('job.create')}}">
+                            <span style="font-size:15px;font-height:5px;background-color: #198754;
+                            border-color: #198754;border-radius:5px; color:aliceblue;padding:10px ">Tạo Mới  <i class="bi bi-person-plus-fill" style="margin-top: 3px"></i></span>
+                        </a>
+                        {{-- <button class="btn btn-success">aaa</button> --}}
+                    </div>
                 </div>
+                
                 <div class="card-body">
+                    
                     <table class="table table-striped" id="table1">
+                        
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Priority</th>
+                                {{-- <th>Priority</th>
                                 <th>Request date</th>
                                 <th>Onboard date</th>
                                 <th>Status</th>
                                 <th>Note</th>
-                                <th>Salary</th>
-                                <th>Amount</th>
-                                <th>Name</th>
-                                <th>Skill</th>
+                                <th>Salary</th> --}}
+                                
+                                <th>Tên Job</th>
+                                <th>Bộ phận</th>
+                                <th>Số lượng yêu cầu</th>
+                                {{-- <th>Skill</th> --}}
+                                <th>Thời gian bắt đầu</th>
+                                <th>Thời gian kết thúc</th>
                                 <th>User Id</th>
 
                                 <th class="text-center">Modify</th>
@@ -63,21 +77,30 @@
                             @foreach ($data as $key => $item)
                                 <tr>
                                     <td class="id">{{ ++$key }}</td>
-                                    <td class="priority">{{ $item->priority }}</td>
+                                    {{-- <td class="priority">{{ $item->priority }}</td>
                                     <td class="request_date">{{ $item->request_date }}</td>
                                     <td class="onboard_date">{{ $item->onboard_date }}</td>
                                     <td class="status">{{ $item->status }}</td>
                                     <td class="note">{{ $item->note }}</td>
-                                    <td class="salary">{{ $item->salary }}</td>
-                                    <td class="amount">{{ $item->amount }}</td>
+                                    <td class="salary">{{ $item->salary }}</td> --}}
+                                    
                                     <td class="name">{{ $item->name }}</td>
-                                    <td class="skill">{{ $item->skill }}</td>
+                                    <td class="group_name">@foreach ($group as $g)
+                                        <option value="{{ $g->id }}">{{ $g->group_name }}</option>
+                                        @endforeach</td>
+                                    <td class="amount">{{ $item->amount }}</td>
+                                    <td class="start_time">@foreach ($calendar as $cal)
+                                        <option value="{{ $cal->id }}">{{ $cal->start_time }}</option>
+                                        @endforeach</td>
+                                    <td class="end_time">
+                                        @foreach ($calendar as $cal)
+                                            <option value="{{ $cal->id }}">{{ $cal->end_time }}</option>
+                                        @endforeach</td>
+                                    {{-- <td class="skill">{{ $item->skill }}</td> --}}
                                     <td class="user_id">{{ $item->user_id }}</td>
                                    
                                     <td class="text-center">
-                                        <a href="{{route('job.create')}}">
-                                            <span class="badge bg-info"><i class="bi bi-person-plus-fill"></i></span>
-                                        </a>
+                                       
                                         {{-- <a href="{{ url('user/'.$item->id) }}"> --}}
                                         <a href="job/{{ $item->id }}/edit">
                                             <span class="badge bg-success"><i class="bi bi-pencil-square"></i></span>

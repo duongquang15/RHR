@@ -11,4 +11,10 @@ class Candidate extends Model
     protected $fillable = [
         'candidate_name','birthday','gender','phone','email','facebook','sent_date_cv','school','cv','note','skill','experience','current_salary','desired_salary','status',
         ];
+    public function level(){
+        return $this->belongsTo(Level::class);
+    }
+    public function calendar(){
+        return $this->hasMany(Calendar::class);
+    }
 }

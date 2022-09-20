@@ -966,7 +966,7 @@ url("./fonts/bootstrap-icons.woff2?4601c71fb26c9277391ec80789bfde9c") format("wo
 .bi-person-dash::before { content: "\f4b2"; }
 .bi-person-fill::before { content: "\f4b3"; }
 .bi-person-lines-fill::before { content: "\f4b4"; }
-.bi-person-plus-fill::before { content: "\f4b5"; }
+.bi-person-plus-fill::before { content: "\f4b5"; margin-top: 3px;}
 .bi-person-plus::before { content: "\f4b6"; }
 .bi-person-square::before { content: "\f4b7"; }
 .bi-person-x-fill::before { content: "\f4b8"; }
