@@ -29,4 +29,8 @@ class Job extends Model
         return $this->belongsTo(Block::class);
     }
 
+    public function candidate(){
+        return $this->hasMany(Candidate::class);
+    }
+
 }

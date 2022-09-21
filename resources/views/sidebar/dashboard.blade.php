@@ -19,35 +19,11 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <div class="card-body">
-                        {{-- <div class="badges">
-                            @if (Auth::user()->role_name=='Admin')
-                            <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
-                            <hr>
-                            <span>Role Name:</span>
-                            <span class="badge bg-success">Admin</span>
-                            @endif
-                            @if (Auth::user()->role_name=='Super Admin')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
-                                <hr>
-                                <span>Role Name:</span>
-                                <span class="badge bg-info">Super Admin</span>
-                            @endif
-                            @if (Auth::user()->role_name=='Normal User')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
-                                <hr>
-                                <span>Role Name:</span>
-                                <span class="badge bg-warning">User Normal</span>
-                            @endif
-                        </div> --}}
-                    </div>
-                </li>
 
                 <li class="sidebar-item">
                     <a href="{{ route('changepass') }}" class='sidebar-link'>
                         <i class="bi bi-shield-lock"></i>
-                        <span>Change Password</span>
+                        <span>Đổi mật khẩu</span>
                     </a>
                 </li>
 
@@ -78,7 +54,7 @@
                     <li class="sidebar-item">
                         <a href="{{ route('candidate.index') }}" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
-                            <span>Quản lý Candidate</span>
+                            <span>Quản lý Ứng viên</span>
                         </a>
                     </li>
                 {{-- @endif --}}

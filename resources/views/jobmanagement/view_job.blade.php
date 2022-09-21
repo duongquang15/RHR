@@ -26,7 +26,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Quản lý Job</h3>
+                    <h3>Cập nhật Job</h3>
 
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -40,18 +40,19 @@
             </div>
         </div>
         <div class="col-12">
+            <div class="card-header" style=" margin-bottom: 20px;border-radius:10px">
+                <h4 class="card-title">Thông tin cơ bản</h4>
+            </div>
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Cập nhật Job</h4>
-                </div>
+
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form form-horizontal" action="{{ route('job.update',$data[0]->id) }}" method="POST" enctype="multipart/form-data">
+                        <form class="form form-horizontal" action="{{ route('job.update', $data[0]->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf @method('PUT')
                             <input type="hidden" name="id" value="{{ $data[0]->id }}">
                             <div class="form-body">
                                 <div class="row">
-                                    <div>
+                                    <div style="display:flex">
                                         <div class="col-2"></div>
                                         <div class="col-4">
                                             <div class="col-md-4">
@@ -74,10 +75,39 @@
                                             <div class="col-md-8">
                                                 <div class="form-group has-icon-left">
                                                     <div class="position-relative">
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-award"></i>
+                                                        </div>
                                                         <select name="level_id" class="form-control">
-                                                            <option value="{{$data[0]->level_id}}">{{$data[0]->level['level_name']}}</option>
-                                                           
+                                                            {{-- <option value="{{$data[0]->level_id}}">{{$data[0]->level['level_name']}}</option> --}}
+                                                            @foreach ($level as $l)
+                                                            @if ($l->id == $data[0]->level_id)
+                                                            <option value="{{ $l->id }}" selected>
+                                                                {{ $l->level_name }}
+                                                            </option>
+                                                            @else
+                                                            <option value="{{ $l->id }}">
+                                                                {{ $l->level_name }}
+                                                            </option>
+                                                            @endif
+
+
+                                                            @endforeach
                                                         </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Ngày Onboard</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="date" class="form-control" id="first-name-icon" name="onboard_date" value="{{ $data[0]->onboard_date }}">
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,11 +116,141 @@
 
                                         </div>
                                         <div class="col-4">
+                                            <div class="col-md-4">
+                                                <label>Số lượng</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control" placeholder="Nhập số lượng" id="first-name-icon" name="amount" value="{{ $data[0]->amount }}">
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                            <div class="col-md-4">
+                                                <label>Mức độ ưu tiên</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </div>
+                                                        <select name="level_id" class="form-control">
+
+                                                            {{-- <option value="{{$data[0]->id}}">{{$data[0]->priority}}</option> --}}
+                                                            @foreach ($data as $d)
+                                                            @if ($d->id == $data[0]->id)
+                                                            <option value="{{ $d->id }}" selected>
+                                                                {{ $d->priority }}
+                                                            </option>
+                                                            @else
+                                                            <option value="{{ $d->id }}">
+                                                                {{ $d->priority }}
+                                                            </option>
+                                                            @endif
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Phòng ban</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </div>
+                                                        <select name="level_id" class="form-control">
+
+                                                            {{-- <option value="{{$data[0]->id}}">{{$data[0]->priority}}</option> --}}
+                                                            @foreach ($meeting as $met)
+                                                            @if ($met->id == $data[0]->id)
+                                                            <option value="{{ $met->id }}" selected>
+                                                                {{ $met->meeting_name }}
+                                                            </option>
+                                                            @else
+                                                            <option value="{{ $met->id }}">
+                                                                {{ $met->meeting_name }}
+                                                            </option>
+                                                            @endif
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-2"></div>
                                     </div>
+                                    <div class="card-header">
+                                        <h4 class="card-title">Yêu cầu công việc</h4>
+                                    </div>
+                                    <div style="display: flex">
+                                        <div class="col-2"></div>
+                                        <div class="col-8">
+                                            <div class="col-md-4">
+                                                <label>Skill</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </div>
+                                                        <select class="form-control">
 
+
+                                                            @foreach ($data as $d)
+                                                            @if ($d->id == $data[0]->id)
+                                                            <option value="{{ $d->id }}" selected>
+                                                                {{ $d->skill }}
+                                                            </option>
+                                                            @else
+                                                            <option value="{{ $met->id }}">
+                                                                {{ $d->skill }}
+                                                            </option>
+                                                            @endif
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Mức lương</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control" id="first-name-icon" name="salary" value="{{ $data[0]->salary }}">
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <label for="">Mô tả công việc <span style="color: red;">(*)</span></label>
+
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <div class="position-relative">
+                                                        <textarea class="form-control" name="note" id="" cols="30" rows="10">{{ $data[0]->note }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2"></div>
+                                    </div>
 
 
                                     <div class="col-12 d-flex justify-content-end">

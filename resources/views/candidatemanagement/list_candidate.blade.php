@@ -13,13 +13,13 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Quản lý Candidate</h3>
+                    <h3>Quản lý Ứng viên</h3>
                 </div>
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -32,75 +32,81 @@
                 </div>
             </div>
         </div>
-       
+
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    Candidate Datatable
+                    Danh sách ứng viên
+                </div>
+                <div class="card-header">
+                    <div style="margin-left: 0px">
+                        <a href="{{route('candidate.create')}}">
+                            <span style="font-size:15px;font-height:5px;background-color: #198754;
+                            border-color: #198754;border-radius:5px; color:aliceblue;padding:10px ">Tạo Mới <i class="bi bi-person-plus-fill" style="margin-top: 3px"></i></span>
+                        </a>
+                    </div>
                 </div>
                 <style>
-                    .card-body th,td{
+                    .card-body th,
+                    td {
                         text-align: center;
                     }
                 </style>
+
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Candidate Name</th>
-                                <!-- <th>Birthday</th> -->
-                                <th>Gender</th>
-                                <th>Phone</th>
+                                <th>Họ và tên</th>
+                                <th>Level</th>
+                                <th>Vị trí ứng tuyển</th>
                                 <th>Email</th>
-                                <!-- <th>Facebook</th> -->
-                                <th>Send Date CV</th>
-                                <th>Scholl</th>
-                                <th>CV</th>
-                                <th>Note</th>
-                                <th>Skill</th>
-                                <th>Experience</th>
-                                <th>Current salary</th>
-                                <th>Desired salary</th>
-                                <th>Status</th>
+                                <th>Số điện thoại</th>
+                                <th>Trạng thái</th>
+                                <th>Người tiếp nhận</th>
                                 <th class="text-center">Modify</th>
-                            </tr>    
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key => $item)
-                                <tr>
-                                    <td class="id">{{ ++$key }}</td>
-                                    <td class="priority">{{ $item->candidate_name }}</td>
-                                    <!-- <td class="request_date">{{ $item->birthday }}</td> -->
-                                    <td class="onboard_date">{{ $item->gender }}</td>
-                                    <td class="status">{{ $item->phone }}</td>
-                                    <td class="note">{{ $item->email }}</td>
-                                    <!-- <td class="salary">{{ $item->facebook }}</td> -->
-                                    <td class="amount">{{ $item->sent_date_cv }}</td>
-                                    <td class="name">{{ $item->school }}</td>
-                                    <td class="skill">{{ $item->cv }}</td>
-                                    <td class="note">{{ $item->note }}</td>
-                                    <td class="skill">{{ $item->skill }}</td>
-                                    <td class="experience">{{ $item->experience }}</td>
-                                    <td class="current_salary">{{ $item->current_salary }}</td>
-                                    <td class="desired_salary">{{ $item->desired_salary }}</td>
-                                    <td class="status">{{ $item->status }}</td>
-                                   
-                                    <td class="text-center" style="display:space-beetween">
-                                        <a href="{{route('candidate.create')}}">
-                                            <span class="badge bg-info"><i class="bi bi-person-plus-fill"></i></span>
-                                        </a>
-                                       
-                                        <a href="candidate/{{ $item->id }}/edit">
-                                            <span class="badge bg-success"><i class="bi bi-pencil-square"></i></span>
-                                        </a>  
-                                        <form action="{{ route('candidate.destroy', $item->id) }}" type="submit" method='post' style="display:inherit" >
-                                            @csrf
-                                            @method('delete')
-                                          <button  type="submit" style="border:none;padding:0;background: none;"!important onclick="return confirm('Are you sure to want to delete it?')"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button>
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="id">{{ ++$key }}</td>
+                                <td class="candidate_name">{{ $item->candidate_name }}</td>
+                                <td class="level_name">{{ $item->level->level_name }}</td>
+                                <td class="name">{{ $item->job->name }}</td>
+                                <td class="email">{{ $item->email }}</td>
+                                <td class="phone">{{ $item->phone }}</td>
+                                <td class="status">
+                                    @if( $item->status==1)
+                                    ScanCV
+                                    @elseif( $item->status==2)
+                                    Phỏng vấn
+                                    @elseif( $item->status==3)
+                                    Offering
+                                    @elseif( $item->status==4)
+                                    Pre Onboard
+                                    @elseif( $item->status==5)
+                                    End
+                                    @endif</td>
+                                <td class="">{{ Auth::user()->name }}</td>
+
+
+                                <td class="text-center" style="display:space-beetween">
+
+                                    <a href="detailcandidate/{{$item->id}}">
+                                        <span class="badge bg-secondary"><i class="bi bi-pencil-fill"></i></span>
+                                    </a>
+                                    <a href="candidate/{{ $item->id }}/edit">
+                                        <span class="badge bg-success"><i class="bi bi-pencil-square"></i></span>
+                                    </a>
+                                    <form action="{{ route('candidate.destroy', $item->id) }}" type="submit" method='post' style="display:inherit">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" style="border:none;padding:0;background: none;" !important onclick="return confirm('Are you sure to want to delete it?')"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button>
+                                    </form>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -114,8 +120,7 @@
                 <p>2021 &copy; Soeng Souy</p>
             </div>
             <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                href="http://soengsouy.com">Soeng Souy</a></p>
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://soengsouy.com">Soeng Souy</a></p>
             </div>
         </div>
     </footer>

@@ -9,12 +9,21 @@ class Candidate extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'candidate_name','birthday','gender','phone','email','facebook','sent_date_cv','school','cv','note','skill','experience','current_salary','desired_salary','status',
+        'candidate_name','birthday','gender','phone','email','facebook','sent_date_cv','school','cv','note','skill','experience','current_salary','desired_salary','status','job_id', 'level_id',
         ];
-    public function level(){
+   
+
+    public function level()
+    {
         return $this->belongsTo(Level::class);
     }
-    public function calendar(){
+    public function calendar()
+    {
         return $this->hasMany(Calendar::class);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
     }
 }

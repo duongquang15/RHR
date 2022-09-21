@@ -90,7 +90,8 @@
                                         <form action="{{ route('user.destroy', $item->id) }}" type="submit" method='post' style="display:inherit" >
                                             @csrf
                                             @method('delete')
-                                          <button  type="submit" style="border:none;padding:0;background: none;"!important><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button>
+                                            <button type="submit" style="border:none;padding:0;background: none;" !important onclick="return confirm('Are you sure to want to delete it?')"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button>
+                                            <!-- <button  type="submit" style="border:none;padding:0;background: none;"!important><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button> -->
                                         </form>
                                     </td>
                                 </tr>

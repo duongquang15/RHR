@@ -43,7 +43,7 @@
                             <div class="col-4" style="margin-right: 20px">
                                 <label for="">Tên Jobs</label>
                                 <div class="form-group position-relative has-icon-left mb-4">
-                                    <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nhập tên job">
+                                    <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nhập tên job"required>
                                     <div class="form-control-icon">
                                         <i class="bi bi-chat-right-dots"></i>
                                     </div>
@@ -60,7 +60,7 @@
                                         <i class="bi bi-person-badge"></i>
                                     </div>
                                     <div class="col-md-12">
-                                        <select name="level_id" class="form-control">
+                                        <select name="level_id" class="form-control" required>
                                             <option>--Lựa chọn--</option>
                                             @foreach ($level as $l)
                                             <option value="{{ $l->id }}">{{ $l->level_name }}</option>
@@ -72,7 +72,7 @@
 
                                 <label for="">Ngày Onboard</label>
                                 <div class="form-group position-relative has-icon-left mb-4">
-                                    <input type="date" class="form-control form-control-lg @error('onboard_date') is-invalid @enderror" name="onboard_date" value="{{ old('onboard_date') }}" placeholder="Nhập thời điểm Onboard">
+                                    <input type="date" class="form-control form-control-lg @error('onboard_date') is-invalid @enderror" name="onboard_date" value="{{ old('onboard_date') }}" placeholder="Nhập thời điểm Onboard" required>
                                     <div class="form-control-icon">
                                         <i class="bi bi-calendar-event"></i>
                                     </div>
@@ -84,28 +84,11 @@
                                 </div>
 
 
-
-
-                                <!-- <label>Request Date</label>
-                                <div class="form-group position-relative has-icon-left mb-4">
-
-                                    <input type="date" class="form-control form-control-lg @error('request_date') is-invalid @enderror" name="request_date" value="{{ old('request_date') }}" placeholder="Vui lòng nhập request date">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-calendar-event"></i>
-                                    </div>
-                                    @error('request_date')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div> -->
-
-
                             </div>
                             <div class="col-4">
                                 <label for="">Số lượng</label>
                                 <div class="form-group position-relative has-icon-left mb-4">
-                                    <input type="text" class="form-control form-control-lg @error('amount') is-invalid @enderror" name="amount" value="{{ old('amount') }}" placeholder="Nhập số lượng">
+                                    <input type="text" class="form-control form-control-lg @error('amount') is-invalid @enderror" name="amount" value="{{ old('amount') }}" placeholder="Nhập số lượng" required>
                                     <div class="form-control-icon">
                                         <i class="bi bi-list-ol"></i>
                                     </div>
@@ -122,7 +105,7 @@
                                         <i class="bi bi-person-badge"></i>
                                     </div>
                                     <div class="col-md-12">
-                                        <select name="priority" class="form-control">
+                                        <select name="priority" class="form-control" required>
                                             <option>--Lựa chọn--</option>
                                             @foreach ($job as $j)
                                             <option>{{ $j->priority }}</option>
@@ -138,7 +121,7 @@
                                         <i class="bi bi-person-badge"></i>
                                     </div>
                                     <div class="col-md-12">
-                                        <select name="group_id" class="form-control">
+                                        <select name="group_id" class="form-control" required>
                                             <option>--Lựa chọn--</option>
                                             @foreach($group as $gr)
                                             <option value="{{$gr->id}}">{{$gr->group_name}}</option>
@@ -148,36 +131,6 @@
                                     </div>
                                 </div>
 
-                                <!-- <label for="">Status</label>
-                                <div class="form-group position-relative has-icon-left mb-4">
-
-                                    <input type="text" class="form-control form-control-lg @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" placeholder="Vui lòng nhập status">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-card-checklist"></i>
-                                    </div>
-                                    @error('status')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div> -->
-
-
-
-
-                                <!-- <div class="form-group position-relative has-icon-left mb-4">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-person-badge"></i>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select name="user_id" class="form-control">
-                                            <option value="">--SELECT User ID--</option>
-                                            @foreach ($job as $j)
-                                            <option value="{{ $j->id }}">{{ $j->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div> -->
 
                             </div>
                             <div class="col-2"></div>
@@ -197,10 +150,10 @@
                                             <i class="bi bi-person-badge"></i>
                                         </div>
                                         <div class="col-md-12">
-                                            <select name="skill" class="form-control">
+                                            <select name="skill" class="form-control" required>
                                                 <option>--Lựa chọn--</option>
-                                                @foreach($job as $j)
-                                                <option>{{$j->skill}}</option>
+                                                @foreach($skill as $s)
+                                                    <option>{{$s->skill_name}}</option>
                                                 @endforeach
                                             </select>
 
@@ -209,7 +162,7 @@
 
                                     <label for="">Mức lương</label>
                                     <div class="form-group position-relative has-icon-left mb-4">
-                                        <input type="text" class="form-control form-control-lg @error('salary') is-invalid @enderror" name="salary" value="{{ old('salary') }}" placeholder="Nhập mức lương">
+                                        <input type="text" class="form-control form-control-lg @error('salary') is-invalid @enderror" name="salary" value="{{ old('salary') }}" placeholder="Nhập mức lương" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-handbag-fill"></i>
                                         </div>
@@ -222,8 +175,7 @@
 
                                     <label for="">Mô tả công việc <span style="color: red;">(*)</span></label>
                                     <div class="form-group position-relative has-icon-left mb-4">
-                                        <!-- <input type="text"rows="10" class="form-control form-control-lg @error('note') is-invalid @enderror" name="note" value="{{ old('note') }}" placeholder="Nhập mô tả"> -->
-                                        <textarea name="note" id="" cols="116" rows="10" class="form-control form-control-lg" style="padding-left: 5px;" placeholder="Nhập mô tả"></textarea>
+                                        <textarea name="note" id="" cols="116" rows="10" class="form-control form-control-lg" style="padding-left: 5px;" placeholder="Nhập mô tả" required></textarea>
 
                                         @error('note')
                                         <span class="invalid-feedback" role="alert">

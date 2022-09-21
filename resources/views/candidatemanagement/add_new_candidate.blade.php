@@ -13,7 +13,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Tạo mới Candidate</h3>
+                    <h3>Quản lý Ứng viên</h3>
                 </div>
 
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -29,195 +29,289 @@
 
         <section class="section">
             <div class="card">
-                <div class="card-header">
-                    Candidate Create
+                <div class="card-header" style="display:flex">
+                    <div class="col-8">
+                        Thông tin Ứng viên
+                    </div>
+                    <div class="col-4" style="text-align: center;background-color: aliceblue;line-height: 3;border-radius: 10px;">
+                        Liên hệ
+                    </div>
                 </div>
                 <div class="card-body">
+                    <style>
+                        label {
+                            font-weight: bolder;
+                        }
+                    </style>
                     <form method="POST" action="{{ route('candidate.store') }}" class="md-float-material" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('candidate_name') is-invalid @enderror" name="candidate_name" value="{{ old('candidate_name') }}" placeholder="Vui lòng nhập candidate name">
-                            <div class="form-control-icon">
-                                <i class="bi bi-award"></i>
+                        <div style="display:flex">
+                            <div class="col-8" style="background: #ffff;">
+                                <div style="display:flex;">
+                                    <div class="col-6" style="padding-right: 20px;">
+                                        <label for="">Họ và tên</label>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="text" class="form-control form-control-lg @error('candidate_name') is-invalid @enderror" name="candidate_name" value="{{ old('candidate_name') }}" placeholder="Nhập họ và tên">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-award"></i>
+                                            </div>
+                                            @error('candidate_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <label for="">Giới tính</label><br>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+
+                                            Nam <input type="radio" name="gender" value="1" checked>
+                                             Nữ <input type="radio" name="gender" value="0"><br>
+                                            @error('gender')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <br>
+                                        <label for="">Trường học</label>
+
+
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="text" class="form-control form-control-lg @error('school') is-invalid @enderror" name="school" value="{{ old('school') }}" placeholder="Nhập tên trường" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-chat-right-dots"></i>
+                                            </div>
+                                            @error('school')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <label for="">CV</label>
+
+
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="file" class="form-control form-control-lg @error('cv') is-invalid @enderror" name="cv" value="{{ old('cv') }}" placeholder="Nhập cv" required>
+
+                                            @error('cv')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-6" style="padding-right: 20px;">
+                                        <label for="">Job</label>
+
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person-badge"></i>
+                                            </div>
+                                            <select name="job_id" class="form-control" required>
+                                                <option>--Lựa chọn--</option>
+                                                @foreach($job as $j)
+                                                <option value="{{$j->id}}">{{$j->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('job_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <label for="">Ngày sinh</label>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="date" class="form-control form-control-lg @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" placeholder="Vui lòng nhập ngày sinh">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-calendar-event"></i>
+                                            </div>
+                                            @error('birthday')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <label for="">Ngày gửi CV</label>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="date" class="form-control form-control-lg @error('sent_date_cv') is-invalid @enderror" name="sent_date_cv" value="{{ old('sent_date_cv') }}" placeholder="Vui lòng nhập sent date cv">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-calendar-event"></i>
+                                            </div>
+                                            @error('sent_date_cv')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+
+                                        <label for="">Trạng thái</label>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="text" class="form-control form-control-lg @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" placeholder="Vui lòng nhập trạng thái">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-card-checklist"></i>
+                                            </div>
+                                            @error('status')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-right: 20px;">
+                                    <label for="">Ghi chú <span style="color: red;">(*)</span></label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <textarea name="note" id="" cols="116" rows="2" class="form-control form-control-lg" style="padding-left: 5px;" placeholder="Nhập ghi chú" required></textarea>
+                                        @error('note')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="card-header" style="display:flex">
+                                    <div class="col-8">
+                                        Kinh nghiệm
+                                    </div>
+
+                                </div>
+
+                                <div style="padding-right: 20px;">
+                                    <label for="">Level</label>
+
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person-badge"></i>
+                                        </div>
+                                        <select name="level_id" class="form-control" required>
+                                            <option>--Lựa chọn--</option>
+                                            @foreach($level as $l)
+                                            <option value="{{$l->id}}">{{$l->level_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('level_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div style="padding-right: 20px;">
+                                    <label for="">Kỹ năng</label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person-badge"></i>
+                                        </div>
+                                        <select name="skill" class="form-control" required>
+                                            <option>--Lựa chọn--</option>
+                                            <option>{{$data[0]->skill}}</option>
+                                        </select>
+                                        @error('skill')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div style="padding-right: 20px;">
+                                    <label for="">Kinh nghiệm cơ bản </label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <textarea name="experience" id="" cols="116" rows="2" class="form-control form-control-lg" style="padding-left: 5px;" placeholder="Nhập kinh nghiệm cơ bản" required></textarea>
+                                        @error('experience')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div style="padding-right: 20px;display: flex;">
+                                    <div style="padding-right: 20px" class="col-6">
+                                        <label for="">Mức lương hiện tại</label>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-handbag-fill"></i>
+                                            </div>
+                                            <input type="text" class="form-control form-control-lg @error('current_salary') is-invalid @enderror" name="current_salary" value="{{ old('current_salary') }}" placeholder="Nhập mức lương hiện tại">
+                                            @error('current_salary')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label for="">Mức lương mong muốn</label>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-handbag-fill"></i>
+                                            </div>
+                                            <input type="text" class="form-control form-control-lg @error('desired_salary') is-invalid @enderror" name="desired_salary" value="{{ old('desired_salary') }}" placeholder="Nhập mức lương mong muốn">
+                                            @error('desired_salary')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
-                            @error('candidate_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                            <div class="col-4" style="background-color: aliceblue;border-radius: 15px;padding: 0px 15px 15px 15px;">
+                                <div class="content-right">
+                                    <label for="">Số điện thoại</label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <input type="text" rows class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Nhập số điện thoại">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-telephone"></i>
+                                        </div>
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
 
+                                    <label for="">Email</label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <input type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Nhập địa chỉ email">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
 
+                                    <label for="">Facebook</label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <input type="text" class="form-control form-control-lg @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}" placeholder="Nhập địa chỉ facebook">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-facebook"></i>
+                                        </div>
+                                        @error('facebook')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
 
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="date" class="form-control form-control-lg @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" placeholder="Vui lòng nhập ngày sinh">
-                            <div class="form-control-icon">
-                                <i class="bi bi-calendar-event"></i>
+                                </div>
                             </div>
-                            @error('birthday')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
                         </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" placeholder="Vui lòng nhập giới tính">
-                            <div class="form-control-icon">
-                                <i class="bi bi-gem"></i>
-                            </div>
-                            @error('gender')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Vui lòng nhập phone">
-                            <div class="form-control-icon">
-                                <i class="bi bi-telephone"></i>
-                            </div>
-                            @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Vui lòng nhập email">
-                            <div class="form-control-icon">
-                                <i class="bi bi-envelope"></i>
-                            </div>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}" placeholder="Vui lòng nhập facebook">
-                            <div class="form-control-icon">
-                                <i class="bi bi-facebook"></i>
-                            </div>
-                            @error('facebook')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="date" class="form-control form-control-lg @error('sent_date_cv') is-invalid @enderror" name="sent_date_cv" value="{{ old('sent_date_cv') }}" placeholder="Vui lòng nhập sent date cv">
-                            <div class="form-control-icon">
-                                <i class="bi bi-calendar-event"></i>
-                            </div>
-                            @error('sent_date_cv')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('school') is-invalid @enderror" name="school" value="{{ old('school') }}" placeholder="Vui lòng nhập school">
-                            <div class="form-control-icon">
-                                <i class="bi bi-door-open"></i>
-                            </div>
-                            @error('school')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('cv') is-invalid @enderror" name="cv" value="{{ old('cv') }}" placeholder="Vui lòng nhập cv">
-                            <div class="form-control-icon">
-                                <i class="bi bi-file-medical-fill"></i>
-                            </div>
-                            @error('cv')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('note') is-invalid @enderror" name="note" value="{{ old('note') }}" placeholder="Vui lòng nhập note">
-                            <div class="form-control-icon">
-                                <i class="bi bi-chat-right-dots"></i>
-                            </div>
-                            @error('note')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('skill') is-invalid @enderror" name="skill" value="{{ old('skill') }}" placeholder="Vui lòng nhập skill">
-                            <div class="form-control-icon">
-                                <i class="bi bi-chat-right-dots"></i>
-                            </div>
-                            @error('skill')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('experience') is-invalid @enderror" name="experience" value="{{ old('experience') }}" placeholder="Vui lòng nhập experience">
-                            <div class="form-control-icon">
-                                <i class="bi bi-app-indicator"></i>
-                            </div>
-                            @error('experience')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('current_salary') is-invalid @enderror" name="current_salary" value="{{ old('current_salary') }}" placeholder="Vui lòng nhập current salary">
-                            <div class="form-control-icon">
-                                <i class="bi bi-handbag-fill"></i>
-                            </div>
-                            @error('current_salary')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('status') is-invalid @enderror" name="desired_salary" value="{{ old('desired_salary') }}" placeholder="Vui lòng nhập desired salary">
-                            <div class="form-control-icon">
-                                <i class="bi bi-handbag-fill"></i>
-                            </div>
-                            @error('desired_salary')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-lg @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" placeholder="Vui lòng nhập status">
-                            <div class="form-control-icon">
-                                <i class="bi bi-chat-right-dots"></i>
-                            </div>
-                            @error('status')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-
 
 
 

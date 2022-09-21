@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skill;
 use App\Models\Block;
 use App\Models\User;
 use App\Models\Group;
@@ -22,9 +23,12 @@ class JobController extends Controller
     public function index()
     {
         // $block =Block::all();
+
         $group = Group::all();
+
         $calendar = Calendar::all();
         $data = Job::orderBy('created_at', 'ASC')->get();
+        // $a=$data[0]->user->name;die($a);
         return view('jobmanagement.list_job', compact('data', 'calendar', 'group',));
     }
 
@@ -35,12 +39,12 @@ class JobController extends Controller
      */
     public function create()
     {
-        // $candiate=Candidate::all();
+        $skill = Skill::all();
         $group = Group::all();
         $level = Level::all();
         $user = User::orderBy('name', 'ASC')->select('id', 'name')->get();
         $job = Job::all();
-        return view('jobmanagement.add_new_job', compact('user', 'level', 'job','group'));
+        return view('jobmanagement.add_new_job', compact('user', 'level', 'job', 'group', 'skill'));
     }
 
     /**
@@ -64,8 +68,8 @@ class JobController extends Controller
             'note' => $request->note,
             'status' => '1',
             'user_id' => auth()->id(),
-        ]); 
-        // ($request->only('name','level_id','request_date','onboard_date','amount','priority','group_id','skill','salary','note'));
+        ]);
+
         return redirect()->route('job.index')->with('success', 'Thêm mới job thành công');
     }
 
@@ -80,6 +84,16 @@ class JobController extends Controller
         //
     }
 
+    public function detailJob($id)
+    {
+        $data = Job::all();
+        $level = Level::all();
+        $group = Group::all();
+        // $g=$data[0]->group->group_name;
+        // die($g);
+        $meeting = Meeting::all();
+        return view('jobmanagement.detail_job', compact('data', 'level', 'meeting', 'group'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -88,9 +102,11 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $data = Job::query()->where('id', $id)->with('level')->get();
-        $level = Level::query()->where('id', $id)->with('level')->get();
-        return view('jobmanagement.view_job', compact('data','level'));
+
+        $data = Job::all();
+        $level = Level::all();
+        $meeting = Meeting::all();
+        return view('jobmanagement.view_job', compact('data', 'level', 'meeting'));
     }
 
     /**

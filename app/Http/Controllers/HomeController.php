@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Candidate;
+use App\Models\Job;
+use App\Models\Level;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Auth;
@@ -26,7 +30,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $job=Job::get()->count();
+        $level=Level::get()->count();
+        $candidate=Candidate::get()->count();
+        $candidates=Candidate::paginate(3);
+        // dd($candidates);
+        // dd($candidates);
+        return view('home',compact('job','level','candidate','candidates'));
     }
     public function changepass(){
         return view('usermanagement.change_password');

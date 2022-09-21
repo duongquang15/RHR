@@ -14,7 +14,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -32,3 +32,6 @@ Route::resources([
     'candidate'=>'App\Http\Controllers\CandidateController',
 
 ]);
+Route::get('/detailjob/{id}', [App\Http\Controllers\JobController::class, 'detailJob'])->name('job.detailjob');
+Route::get('/detailcandidate/{id}', [App\Http\Controllers\CandidateController::class, 'detailCandidate'])->name('candidate.detailcandidate');
+Route::put('/updatestatus/{id}', [App\Http\Controllers\CandidateController::class, 'updateStatus'])->name('candidate.updatestatus');

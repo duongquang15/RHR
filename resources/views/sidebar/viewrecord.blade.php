@@ -46,7 +46,7 @@
                 <li class="sidebar-item">
                     <a href="{{ route('change/password') }}" class='sidebar-link'>
                         <i class="bi bi-shield-lock"></i>
-                        <span>Chnage Password</span>
+                        <span>Đổi mật khẩu</span>
                     </a>
                 </li>
 

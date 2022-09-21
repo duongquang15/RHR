@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Candidate;
+use App\Models\Job;
+use App\Models\Level;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -13,8 +15,11 @@ class CandidateController extends Controller
      */
     public function index()
     {
+        $level=Level::all();
+        $job=Job::all();
         $data = Candidate::orderBy('created_at', 'ASC')->get();
-        return view('candidatemanagement.list_candidate', compact('data'));
+        // $a=$data[0]->level->level_name;die($a);
+        return view('candidatemanagement.list_candidate', compact('data','job','level'));
     }
 
     /**
@@ -24,7 +29,10 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        return view('candidatemanagement.add_new_candidate');
+        $job=Job::all();
+        $level=Level::all();
+        $data = Candidate::all();
+        return view('candidatemanagement.add_new_candidate',compact('data','level','job'));
     }
 
     /**
@@ -37,6 +45,15 @@ class CandidateController extends Controller
     {
         Candidate::create($request->all());
         return redirect()->route('candidate.index')->with('success', 'Thêm mới ứng viên thành công');
+    }
+
+    public function detailCandidate(Request $request, Candidate $candidate, $id)
+    {
+        $job=Job::all();
+        $level=Level::all();
+        $data = Candidate::where('id', $id)->get();
+      
+        return view('candidatemanagement.detail_candidate',compact('data','level','job'));
     }
 
     /**
@@ -73,6 +90,15 @@ class CandidateController extends Controller
     {
         $candidate->update($request->all());
         return redirect()->route('candidate.index')->with('success', 'Cập nhật ứng viên thành công');
+    }
+
+    public function updateStatus(Request $request, Candidate $candidate,$id)
+    {
+        $candidate->find($id)->update([
+            'status' => $request->status
+        ]);
+        // return redirect()->route('candidate.detailcandidate')->with('success', 'Cập nhật trạng thái thành công');
+        return redirect('/detailcandidate'. '/' . $id);
     }
 
     /**

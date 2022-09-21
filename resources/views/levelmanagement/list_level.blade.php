@@ -37,8 +37,14 @@
         {{-- {!! Toastr::message() !!} --}}
         <section class="section">
             <div class="card">
-                <div class="card-header">
-                    Level Datatable
+            <div class="card-header">
+                    <div style="margin-left: 0px">
+                        <a href="{{route('level.create')}}">
+                            <span style="font-size:15px;font-height:5px;background-color: #198754;
+                            border-color: #198754;border-radius:5px; color:aliceblue;padding:10px ">Tạo Mới  <i class="bi bi-person-plus-fill" style="margin-top: 3px"></i></span>
+                        </a>
+                        {{-- <button class="btn btn-success">aaa</button> --}}
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
@@ -79,9 +85,9 @@
                                     <td class="role_name"><span  class=" badge bg-warning">{{ $item->role_name }}</span></td>
                                     @endif --}}
                                     <td class="text-center">
-                                        <a href="{{route('level.create')}}">
+                                        <!-- <a href="{{route('level.create')}}">
                                             <span class="badge bg-info"><i class="bi bi-person-plus-fill"></i></span>
-                                        </a>
+                                        </a> -->
                                         {{-- <a href="{{ url('user/'.$item->id) }}"> --}}
                                         <a href="level/{{ $item->id }}/edit">
                                             <span class="badge bg-success"><i class="bi bi-pencil-square"></i></span>
