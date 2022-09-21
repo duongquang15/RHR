@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Block extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'group_name',
+        'block_name',
     ];
-    public function job(){
+    function job(){
         return $this->hasMany(Job::class);
     }
-    public function block(){
-        return $this->belongsTo(Block::class);
+    function group(){
+        return $this->hasMany(Group::class);
     }
 }

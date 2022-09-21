@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Block;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\Calendar;
+use App\Models\Candidate;
 use App\Models\Job;
+use App\Models\Level;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -16,10 +21,11 @@ class JobController extends Controller
      */
     public function index()
     {
-        $group=Group::all();
-        $calendar=Calendar::all();
+        // $block =Block::all();
+        $group = Group::all();
+        $calendar = Calendar::all();
         $data = Job::orderBy('created_at', 'ASC')->get();
-        return view('jobmanagement.list_job', compact('data','calendar','group'));
+        return view('jobmanagement.list_job', compact('data', 'calendar', 'group',));
     }
 
     /**
@@ -29,8 +35,12 @@ class JobController extends Controller
      */
     public function create()
     {
-        $job=User::orderBy('name','ASC')->select('id','name')->get();
-        return view('jobmanagement.add_new_job', compact('job'));
+        // $candiate=Candidate::all();
+        $group = Group::all();
+        $level = Level::all();
+        $user = User::orderBy('name', 'ASC')->select('id', 'name')->get();
+        $job = Job::all();
+        return view('jobmanagement.add_new_job', compact('user', 'level', 'job','group'));
     }
 
     /**
@@ -39,9 +49,23 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        Job::create($request->all());
+        Job::create([
+            'name' => $request->name,
+            'level_id' => $request->level_id,
+            'request_date' => '2022-09-24',
+            'onboard_date' => $request->onboard_date,
+            'amount' => $request->amount,
+            'priority' => $request->priority,
+            'group_id' => $request->group_id,
+            'skill' => $request->skill,
+            'salary' => $request->salary,
+            'note' => $request->note,
+            'status' => '1',
+            'user_id' => auth()->id(),
+        ]); 
+        // ($request->only('name','level_id','request_date','onboard_date','amount','priority','group_id','skill','salary','note'));
         return redirect()->route('job.index')->with('success', 'Thêm mới job thành công');
     }
 
@@ -64,8 +88,9 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $data = Job::query()->where('id',$id)->get();
-        return view('jobmanagement.view_job', compact('data'));
+        $data = Job::query()->where('id', $id)->with('level')->get();
+        $level = Level::query()->where('id', $id)->with('level')->get();
+        return view('jobmanagement.view_job', compact('data','level'));
     }
 
     /**
