@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Job;
 use App\Models\Level;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -49,11 +50,12 @@ class CandidateController extends Controller
 
     public function detailCandidate(Request $request, Candidate $candidate, $id)
     {
+        $meeting= Meeting::all();
         $job=Job::all();
         $level=Level::all();
         $data = Candidate::where('id', $id)->get();
       
-        return view('candidatemanagement.detail_candidate',compact('data','level','job'));
+        return view('candidatemanagement.detail_candidate',compact('data','level','job','meeting'));
     }
 
     /**

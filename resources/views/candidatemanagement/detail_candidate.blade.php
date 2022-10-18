@@ -60,11 +60,11 @@
                                         <br>
                                         <div>
                                             <div class="col-12" style="display:flex">
-                                                <div class="col-md-7">
+                                                <div class="col-md-5">
                                                     <h3 style="color: #3C48C7;">{{ $data[0]->candidate_name }}</h3>
 
                                                 </div>
-                                                <div class="col-md-4" style="display:flex ">
+                                                <div class="col-md-3" style="display:flex ">
                                                     <label for="" style="padding-right: 10px">Trạng thái</label>
 
                                                     @if( $data[0]->status==1)
@@ -81,8 +81,104 @@
                                                 </div>
                                                 @if( $data[0]->status>=5)
                                                 <div></div>
+                                                @elseif( $data[0]->status==1)
+                                                <div style="display: flex;">
+                                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                                        Chọn lịch
+                                                    </button>
+
+                                                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                                                </div>
+                                                                <form >
+                                                                    @csrf @method('POST')
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group position-relative has-icon-left mb-4">
+                                                                            <input type="text" class="form-control form-control-lg @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Title" required>
+                                                                            <div class="form-control-icon">
+                                                                                <i class="bi bi-list-ol"></i>
+                                                                            </div>
+
+                                                                        </div>
+                                                                       
+                                                                        <div class="form-group position-relative has-icon-left mb-4">
+                                                                            <input type="datetime-local" class="form-control form-control-lg @error('start_time') is-invalid @enderror" name="start_time" value="{{ old('start_time') }}" placeholder="Giờ bắt đầu" required>
+                                                                            <div class="form-control-icon">
+                                                                                <i class="bi bi-list-ol"></i>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="form-group position-relative has-icon-left mb-4">
+                                                                            <input type="datetime-local" class="form-control form-control-lg @error('end_time') is-invalid @enderror" name="end_time" value="{{ old('end_time') }}" placeholder="Giờ kết thúc" required>
+                                                                            <div class="form-control-icon">
+                                                                                <i class="bi bi-list-ol"></i>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="">
+                                                                            <select name="meeting_id" class="form-control" required>
+                                                                                <option>--Lựa chọn--</option>
+                                                                                @foreach($meeting as $met)
+                                                                                <option value="{{$met->id}}">{{$met->meeting_name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
+                                                                        <input type="submit" formaction="{{route('addCalendar',$data[0]->id)}}" value="Add lịch" class="btn btn-primary">
+                                                                    </div>
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                @elseif( $data[0]->status==3)
+                                                <div style="display: flex;">
+                                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                                        Offer
+                                                    </button>
+                                                    <button class="btn btn-info btn-lg" name="status" value="{{ $data[0]->status + '1'}}" style="margin-left:10px;">Đồng ý Offer</button>
+
+                                                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                                                </div>
+                                                                <form >
+                                                                    @csrf @method('POST')
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group position-relative has-icon-left mb-4">
+                                                                            <input type="text" class="form-control form-control-lg @error('desired_salary') is-invalid @enderror" name="desired_salary" value="{{ old('desired_salary') }}" placeholder="Mức lương" required>
+                                                                            <div class="form-control-icon">
+                                                                                <i class="bi bi-list-ol"></i>
+                                                                            </div>
+
+                                                                        </div>
+                                                                       
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
+                                                                        <input type="submit" formaction="{{route('offerCandidate',$data[0]->id)}}" value="Offering" class="btn btn-primary">
+                                                                    </div>
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
                                                 @else
-                                                <button class="btn btn-info" name="status" value="{{ $data[0]->status + '1'}}" style="padding-left:10px; margin-left: -100px;margin-top: -11px;">Chuyển đổi trạng thái</button>
+                                                <button class="btn btn-info" name="status" value="{{ $data[0]->status + '1'}}" style="padding-left:10px;margin-top: -11px;">Chuyển đổi trạng thái</button>
                                                 @endif
                                             </div>
                                         </div><br><br>
@@ -100,9 +196,9 @@
                                                     <label for="">Số điện thoại</label>
                                                     <h6 style="color: #3C48C7;">{{$data[0]->phone}}</h6>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-8">
                                                     <label for="">Email</label>
-                                                    <h6 style="color: #3C48C7;">{{$data[0]->email}}</h6>
+                                                    <h6 style="color: #3C48C7">{{$data[0]->email}}</h6>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="">Ngày gửi CV</label>
@@ -240,6 +336,7 @@
         </div>
     </div>
 </div>
+
 
 <footer>
     <div class="footer clearfix mb-0 text-muted ">
