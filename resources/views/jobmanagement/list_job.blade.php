@@ -38,6 +38,9 @@
 
         <section class="section">
             <div class="card">
+            <div class="card-header">
+                    Danh sách Job
+                </div>
                 <div class="card-header">
                     <div style="margin-left: 0px">
                         <a href="{{route('job.create')}}">
