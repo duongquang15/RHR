@@ -99,7 +99,6 @@ class CandidateController extends Controller
         $candidate->find($id)->update([
             'status' => $request->status
         ]);
-        // return redirect()->route('candidate.detailcandidate')->with('success', 'Cập nhật trạng thái thành công');
         return redirect('/detailcandidate'. '/' . $id);
     }
 

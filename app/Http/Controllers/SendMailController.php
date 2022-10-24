@@ -58,7 +58,9 @@ class SendMailController extends Controller
         $candidate->update([
             'desired_salary' => $request->desired_salary
         ]);
+        
         $this->offerMail($id);
+
 
         return redirect()->route('candidate.detailcandidate', [$id]);
     }

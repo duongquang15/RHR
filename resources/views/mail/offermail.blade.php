@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    oke bro
+    <h3>Hello {{$candidate->candidate_name}}</h3>
+    <p>Offer của bạn là: {{$candidate->desired_salary}}</p>
 </body>
 </html>

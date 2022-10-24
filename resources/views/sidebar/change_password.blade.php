@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="{{ route('home') }}"><img src="{{ URL::to('assets/images/logo/logo.png') }}" alt="Logo"
+                    <a href="{{ route('home') }}"><img src="{{ URL::to('assets/images/logo/logo1.png') }}" alt="Logo"
                             srcset=""></a>
                 </div>
                 <div class="toggler">
