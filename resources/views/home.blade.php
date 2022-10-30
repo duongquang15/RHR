@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('menu')
 @extends('sidebar.dashboard')
@@ -11,8 +10,17 @@
             <i class="bi bi-justify fs-3"></i>
         </a>
     </header>
+    <div class="card-body">
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+        @endif
+
+
+    </div>
     <div class="page-heading">
-        <h3>Profile Statistics</h3>
+        <h3>Thống kê hồ sơ</h3>
     </div>
     {{-- {!! Toastr::message() !!} --}}
     <div class="page-content">
@@ -29,8 +37,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Activity Log</h6>
-                                        <h6 class="font-extrabold mb-0">Activity Log</h6>
+                                        <h6 class="text-muted font-semibold">Số lượng Job</h6>
+                                        <h6 class="font-extrabold mb-0">{{$job}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -42,12 +50,13 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon blue">
-                                            <i class="iconly-boldProfile"></i>
+                                            <i class="iconly-boldBookmark"></i>
+
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">User Activity log</h6>
-                                        <h6 class="font-extrabold mb-0">hhhhhhhhhh</h6>
+                                        <h6 class="text-muted font-semibold">Số lượng Level</h6>
+                                        <h6 class="font-extrabold mb-0">{{$level}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -63,8 +72,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">User Total</h6>
-                                        <h6 class="font-extrabold mb-0">{{ Auth::user()->name }}</h6>
+                                        <h6 class="text-muted font-semibold">Tổng User</h6>
+                                        <h6 class="font-extrabold mb-0">{{ Auth::user()->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -76,12 +85,12 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon red">
-                                            <i class="iconly-boldBookmark"></i>
+                                            <i class="iconly-boldProfile"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Saved Record</h6>
-                                        <h6 class="font-extrabold mb-0">Staff</h6>
+                                        <h6 class="text-muted font-semibold">Tổng số Ứng viên</h6>
+                                        <h6 class="font-extrabold mb-0">{{$candidate}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -110,10 +119,8 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="d-flex align-items-center">
-                                            <svg class="bi text-primary" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                                <use
-                                                    xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                            <svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
+                                                <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
                                             </svg>
                                             <h5 class="mb-0 ms-3">Europe</h5>
                                         </div>
@@ -128,10 +135,8 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="d-flex align-items-center">
-                                            <svg class="bi text-success" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                                <use
-                                                    xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                            <svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
+                                                <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
                                             </svg>
                                             <h5 class="mb-0 ms-3">America</h5>
                                         </div>
@@ -146,10 +151,8 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="d-flex align-items-center">
-                                            <svg class="bi text-danger" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                                <use
-                                                    xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                            <svg class="bi text-danger" width="32" height="32" fill="blue" style="width:10px">
+                                                <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
                                             </svg>
                                             <h5 class="mb-0 ms-3">Indonesia</h5>
                                         </div>
@@ -283,10 +286,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                
-                                            
 
-                                            
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -304,40 +307,27 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Recent Messages</h4>
+                        <h4>Danh sách ứng viên</h4>
                     </div>
                     <div class="card-content pb-4">
+                        @foreach($candidates as $value)
                         <div class="recent-message d-flex px-4 py-3">
                             <div class="avatar avatar-lg">
                                 <img src="assets/images/faces/4.jpg">
                             </div>
+
                             <div class="name ms-4">
-                                <h5 class="mb-1">Hank Schrader</h5>
-                                <h6 class="text-muted mb-0">@johnducky</h6>
+                                <h5 class="mb-1">{{$value->candidate_name}}</h5>
                             </div>
+
                         </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="assets/images/faces/5.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">Dean Winchester</h5>
-                                <h6 class="text-muted mb-0">@imdean</h6>
-                            </div>
+                        @endforeach
+                        <div class="d-flex justify-content-center">
+                            {!! $candidates->links() !!}
                         </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="assets/images/faces/1.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">John Dodol</h5>
-                                <h6 class="text-muted mb-0">@dodoljohn</h6>
-                            </div>
-                        </div>
-                        <div class="px-4">
-                            <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                                Conversation</button>
-                        </div>
+
+
+
                     </div>
                 </div>
                 <div class="card">
@@ -358,10 +348,10 @@
                 <p>2021 &copy; Soeng Souy</p>
             </div>
             <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                href="http://soengsouy.com">Soeng Souy</a></p>
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://soengsouy.com">Soeng Souy</a></p>
             </div>
         </div>
     </footer>
 </div>
+
 @endsection

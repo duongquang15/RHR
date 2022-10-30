@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="{{ route('home') }}"><img src="{{ URL::to('assets/images/logo/logo.png') }}" alt="Logo" srcset=""></a>
+                    <a href="{{ route('home') }}"><img src="{{ URL::to('assets/images/logo/logo1.png') }}" alt="Logo" srcset=""></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -47,7 +47,7 @@
                 <li class="sidebar-item">
                     <a href="{{ route('change/password') }}" class='sidebar-link'>
                         <i class="bi bi-shield-lock"></i>
-                        <span>Chnage Password</span>
+                        <span>Đổi mật khẩu</span>
                     </a>
                 </li>
 
@@ -96,11 +96,16 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('logout') }}" class='sidebar-link'>
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Log Out</span>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form1').submit();">
+                        <i class="bi bi-box-arrow-right" style="margin-left: 1rem"></i>
+                        <p style="display:inline-block">LOGOUT</p>
                     </a>
+                    <form id="logout-form1" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
+                
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
