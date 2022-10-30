@@ -35,3 +35,6 @@ Route::resources([
 Route::get('/detailjob/{id}', [App\Http\Controllers\JobController::class, 'detailJob'])->name('job.detailjob');
 Route::get('/detailcandidate/{id}', [App\Http\Controllers\CandidateController::class, 'detailCandidate'])->name('candidate.detailcandidate');
 Route::put('/updatestatus/{id}', [App\Http\Controllers\CandidateController::class, 'updateStatus'])->name('candidate.updatestatus');
+
+Route::post('/add-calendar/{id}', [App\Http\Controllers\SendMailController::class, 'addCalendar'])->name('addCalendar');
+Route::post('/offering/{id}', [App\Http\Controllers\SendMailController::class, 'offerCandidate'])->name('offerCandidate');

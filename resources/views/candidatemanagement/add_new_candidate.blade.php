@@ -234,7 +234,7 @@
                                     </div>
                                 </div>
 
-                                <div style="padding-right: 20px;display: flex;">
+                                <!-- <div style="padding-right: 20px;display: flex;">
                                     <div style="padding-right: 20px" class="col-6">
                                         <label for="">Mức lương hiện tại</label>
                                         <div class="form-group position-relative has-icon-left mb-4">
@@ -264,7 +264,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
 
                             </div>
@@ -272,7 +272,7 @@
                                 <div class="content-right">
                                     <label for="">Số điện thoại</label>
                                     <div class="form-group position-relative has-icon-left mb-4">
-                                        <input type="text" rows class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Nhập số điện thoại">
+                                        <input type="text" rows class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Nhập số điện thoại" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-telephone"></i>
                                         </div>
@@ -285,7 +285,7 @@
 
                                     <label for="">Email</label>
                                     <div class="form-group position-relative has-icon-left mb-4">
-                                        <input type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Nhập địa chỉ email">
+                                        <input type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Nhập địa chỉ email" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -298,7 +298,7 @@
 
                                     <label for="">Facebook</label>
                                     <div class="form-group position-relative has-icon-left mb-4">
-                                        <input type="text" class="form-control form-control-lg @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}" placeholder="Nhập địa chỉ facebook">
+                                        <input type="text" class="form-control form-control-lg @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}" placeholder="Nhập địa chỉ facebook" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-facebook"></i>
                                         </div>
