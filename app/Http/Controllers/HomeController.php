@@ -34,9 +34,8 @@ class HomeController extends Controller
         $level=Level::get()->count();
         $candidate=Candidate::get()->count();
         $candidates=Candidate::paginate(3);
-        // dd($candidates);
-        // dd($candidates);
-        return view('home',compact('job','level','candidate','candidates'));
+        $candidatess=Candidate::all();
+        return view('home',compact('job','level','candidate','candidates','candidatess'));
     }
     public function changepass(){
         return view('usermanagement.change_password');
@@ -50,14 +49,14 @@ class HomeController extends Controller
 
         $request->validate([
             'current_password' =>'required|string|min:6|max:10',
-            'new_password' => 'required|string|min:6|max:10|same:new_confirm_password|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{3,10}$/',
+            'new_password' => 'required|string|min:6|max:10|same:new_confirm_password',
             'new_confirm_password' => 'required|string|min:8',
         ],[
             'required'=>'Chưa nhập :attribute',
             'min'=>'Nhập sai :attribute',
             'max'=>'Nhập sai :attribute',
             'same'=>'Nhập sai :attribute',
-            'regex'=>'Nhập sai :attribute',
+          
         ],
         [
             'current_password'=>'Old pass',

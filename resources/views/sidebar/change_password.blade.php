@@ -58,8 +58,18 @@
                     </a>
                 </li>
 
-
-               
+                <li class="sidebar-item">
+                    <a href="{{ route('calendar.index') }}" class='sidebar-link'>
+                        <i class="bi bi-hexagon-fill"></i>
+                        <span>Quản lý Lịch</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('calendar.detailcalendar') }}" class='sidebar-link'>
+                        <i class="bi bi-hexagon-fill"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
                
                 <li class="sidebar-item">
                     <a href="{{ route('logout') }}"

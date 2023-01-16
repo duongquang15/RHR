@@ -10,7 +10,7 @@ class Candidate extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = [
-        'candidate_name','birthday','gender','phone','email','facebook','sent_date_cv','school','cv','note','skill','experience','current_salary','desired_salary','status','job_id', 'level_id',
+       'candidate_name','birthday','gender','phone','email','facebook','sent_date_cv','school','cv','note','skill','experience','current_salary','desired_salary','status','job_id', 'level_id',
         ];
    
 
@@ -18,9 +18,10 @@ class Candidate extends Model
     {
         return $this->belongsTo(Level::class);
     }
-    public function calendar()
+    public function Calendar()
     {
-        return $this->hasMany(Calendar::class);
+        return $this->hasMany(Calendar::class);//1 nhiều đây 1 candidate có nhiều calendar
+        //ô xem cái đ trongcontroller chưa, hay dữ liệu sai
     }
 
     public function job()

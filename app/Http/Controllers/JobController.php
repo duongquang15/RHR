@@ -12,6 +12,7 @@ use App\Models\Job;
 use App\Models\Level;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
+use App\Http\Requests\JobRequest;
 
 class JobController extends Controller
 {
@@ -23,13 +24,10 @@ class JobController extends Controller
     public function index()
     {
         // $block =Block::all();
-
         $group = Group::all();
-
         $calendar = Calendar::all();
         $data = Job::orderBy('created_at', 'ASC')->get();
-        // $a=$data[0]->user->name;die($a);
-        return view('jobmanagement.list_job', compact('data', 'calendar', 'group',));
+        return view('jobmanagement.list_job', compact('data', 'calendar', 'group'));
     }
 
     /**
@@ -53,7 +51,7 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(JobRequest $request, User $user)
     {
         Job::create([
             'name' => $request->name,

@@ -17,7 +17,7 @@ class Calendar extends Model
     public function meeting(){
         return $this->belongsTo(Meeting::class);
     }
-    public function candidate(){
-        return $this->belongsTo(Candidate::class);
+    public function Candidate(){
+        return $this->belongsTo(Candidate::class, 'candidate_id', 'id');
     }
 }

@@ -54,19 +54,24 @@
                                     @enderror
                                 </div>
 
-                                <label for="">Level</label>
-                                <div class="form-group position-relative has-icon-left mb-4">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-person-badge"></i>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select name="level_id" class="form-control" required>
-                                            <option>--Lựa chọn--</option>
+                               
+                                <div style="padding-right: 20px;">
+                                    <label for="">Level</label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person-badge"></i>
+                                        </div>
+                                        <select  name="level_id" class="form-control" required>
+                                            <option value="">--Lựa chọn--</option>
                                             @foreach ($level as $l)
                                             <option value="{{ $l->id }}">{{ $l->level_name }}</option>
                                             @endforeach
                                         </select>
-
+                                        @error('level_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -99,35 +104,54 @@
                                     @enderror
                                 </div>
 
-                                <label>Mức độ ưu tiên</label>
-                                <div class="form-group position-relative has-icon-left mb-4">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-person-badge"></i>
-                                    </div>
-                                    <div class="col-md-12">
+                                <div style="padding-right: 20px;">
+                                    <label for="">Mức độ ưu tiên</label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person-badge"></i>
+                                        </div>
                                         <select name="priority" class="form-control" required>
-                                            <option>--Lựa chọn--</option>
+                                            <option value="">--Lựa chọn--</option>
                                             @foreach ($job as $j)
-                                            <option>{{ $j->priority }}</option>
+                                            <option value="{{ $j->priority }}">
+                                                
+                                                @if( $j->priority==1)
+                                                <b>Gấp</b>
+                                                @elseif( $j->priority==2)
+                                                <b>Bình thường</b>
+                                                @else
+                                                <b>Không gấp </b>
+                                                @endif
+                                            </option>
                                             @endforeach
                                         </select>
-
+                                        @error('priority')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
 
-                                <label>Phòng ban</label>
-                                <div class="form-group position-relative has-icon-left mb-4">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-person-badge"></i>
-                                    </div>
-                                    <div class="col-md-12">
+                               
+
+                                <div style="padding-right: 20px;">
+                                    <label for="">Phòng ban</label>
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person-badge"></i>
+                                        </div>
                                         <select name="group_id" class="form-control" required>
-                                            <option>--Lựa chọn--</option>
+                                            <option value="">--Lựa chọn--</option>
                                             @foreach($group as $gr)
                                             <option value="{{$gr->id}}">{{$gr->group_name}}</option>
                                             @endforeach
                                         </select>
-
+                                        @error('group_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -144,19 +168,25 @@
                             <div class="col-2"></div>
                             <div class="col-8">
                                 <div class="col-md-12">
-                                    <label>Skill</label>
-                                    <div class="form-group position-relative has-icon-left mb-4">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person-badge"></i>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <select name="skill" class="form-control" required>
-                                                <option>--Lựa chọn--</option>
-                                                @foreach($skill as $s)
-                                                    <option>{{$s->skill_name}}</option>
-                                                @endforeach
-                                            </select>
+                                   
 
+                                    <div style="padding-right: 20px;">
+                                        <label for="">Skill</label>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person-badge"></i>
+                                            </div>
+                                            <select name="skill" class="form-control" required>
+                                                <option value="">--Lựa chọn--</option>
+                                                @foreach($skill as $s)
+                                                <option>{{$s->skill_name}}</option>
+                                            @endforeach
+                                            </select>
+                                            @error('skill')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -203,10 +233,10 @@
 <footer>
     <div class="footer clearfix mb-0 text-muted ">
         <div class="float-start">
-            <p>2021 &copy; Soeng Souy</p>
+            <p>2022 &copy; Dương Quang</p>
         </div>
         <div class="float-end">
-            <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://soengsouy.com">Soeng Souy</a></p>
+            <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://www.facebook.com/quangit30/">Dương Quang</a></p>
         </div>
     </div>
 </footer>

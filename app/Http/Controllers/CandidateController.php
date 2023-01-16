@@ -19,7 +19,6 @@ class CandidateController extends Controller
         $level=Level::all();
         $job=Job::all();
         $data = Candidate::orderBy('created_at', 'ASC')->get();
-        // $a=$data[0]->level->level_name;die($a);
         return view('candidatemanagement.list_candidate', compact('data','job','level'));
     }
 
@@ -77,8 +76,10 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
+        $level = Level::all();
+        $job = Job::all();
         $data = Candidate::query()->where('id',$id)->get();
-        return view('candidatemanagement.view_candidate', compact('data'));
+        return view('candidatemanagement.view_candidate', compact('data','level','job'));
     }
 
     /**
@@ -90,7 +91,25 @@ class CandidateController extends Controller
      */
     public function update(Request $request, Candidate $candidate)
     {
-        $candidate->update($request->all());
+        $param=[
+            'candidate_name' => $request->candidate_name,
+            'birthday' => $request->birthday,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'facebook' => $request->facebook,
+            'sent_date_cv' => $request->sent_date_cv,
+            'school' => $request->school,
+            'cv' => $request->cv,
+            'note' => $request->note,
+            'skill' => $request->skill,
+            'experience' => $request->experience,
+            'current_salary' => $request->current_salary,
+            'desired_salary' => $request->desired_salary,
+            'job_id' => $request->job_id,
+            'level_id' => $request->level_id,
+        ];
+        $candidate->update($param);
         return redirect()->route('candidate.index')->with('success', 'Cập nhật ứng viên thành công');
     }
 

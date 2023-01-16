@@ -65,7 +65,7 @@
                                 <th>Số điện thoại</th>
                                 <th>Trạng thái</th>
                                 <th>Người tiếp nhận</th>
-                                <th class="text-center">Modify</th>
+                                <th class="text-center" style="weight:150px !important">Modify</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,15 +92,15 @@
                                 <td class="">{{ Auth::user()->name }}</td>
 
 
-                                <td class="text-center" style="display:space-beetween">
+                                <td class="text-center" style="padding-top: 22px;weight:150px;display:flex">
 
                                     <a href="detailcandidate/{{$item->id}}">
                                         <span class="badge bg-secondary"><i class="bi bi-pencil-fill"></i></span>
                                     </a>
-                                    <a href="candidate/{{ $item->id }}/edit">
+                                    <a href="candidate/{{ $item->id }}/edit" style="margin-left:5px;">
                                         <span class="badge bg-success"><i class="bi bi-pencil-square"></i></span>
                                     </a>
-                                    <form action="{{ route('candidate.destroy', $item->id) }}" type="submit" method='post' style="display:inherit">
+                                    <form action="{{ route('candidate.destroy', $item->id) }}" type="submit" method='post' style="display:inherit; margin-left:5px">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" style="border:none;padding:0;background: none;" !important onclick="return confirm('Are you sure to want to delete it?')"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></button>
@@ -117,10 +117,10 @@
     <footer>
         <div class="footer clearfix mb-0 text-muted ">
             <div class="float-start">
-                <p>2021 &copy; Soeng Souy</p>
+                <p>2022 &copy; Dương Quang</p>
             </div>
             <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://soengsouy.com">Soeng Souy</a></p>
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://www.facebook.com/quangit30/">Dương Quang</a></p>
             </div>
         </div>
     </footer>

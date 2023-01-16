@@ -65,8 +65,8 @@
                                         <label for="">Giới tính</label><br>
                                         <div class="form-group position-relative has-icon-left mb-4">
 
-                                            Nam <input type="radio" name="gender" value="1" checked>
-                                             Nữ <input type="radio" name="gender" value="0"><br>
+                                            Nam <input type="radio" name="gender" value="Nam" checked>
+                                             Nữ <input type="radio" name="gender" value="Nữ"><br>
                                             @error('gender')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -151,11 +151,11 @@
                                         </div>
 
 
-                                        <label for="">Trạng thái</label>
+                                        {{-- <label for="">Trạng thái</label> --}}
                                         <div class="form-group position-relative has-icon-left mb-4">
-                                            <input type="text" class="form-control form-control-lg @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" placeholder="Vui lòng nhập trạng thái">
+                                            <input hidden type="text" class="form-control form-control-lg @error('status') is-invalid @enderror" name="status" value="1" placeholder="Vui lòng nhập trạng thái">
                                             <div class="form-control-icon">
-                                                <i class="bi bi-card-checklist"></i>
+                                                {{-- <i class="bi bi-card-checklist"></i> --}}
                                             </div>
                                             @error('status')
                                             <span class="invalid-feedback" role="alert">
@@ -325,10 +325,10 @@
     <footer>
         <div class="footer clearfix mb-0 text-muted ">
             <div class="float-start">
-                <p>2021 &copy; Soeng Souy</p>
+                <p>2022 &copy; Dương Quang</p>
             </div>
             <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://soengsouy.com">Soeng Souy</a></p>
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://www.facebook.com/quangit30/">Dương Quang</a></p>
             </div>
         </div>
     </footer>

@@ -31,12 +31,12 @@
                         <div class="card">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <div class="stats-icon purple">
                                             <i class="iconly-boldShow"></i>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <h6 class="text-muted font-semibold">Số lượng Job</h6>
                                         <h6 class="font-extrabold mb-0">{{$job}}</h6>
                                     </div>
@@ -48,13 +48,13 @@
                         <div class="card">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <div class="stats-icon blue">
                                             <i class="iconly-boldBookmark"></i>
 
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <h6 class="text-muted font-semibold">Số lượng Level</h6>
                                         <h6 class="font-extrabold mb-0">{{$level}}</h6>
                                     </div>
@@ -64,14 +64,14 @@
                     </div>
                     <div class="col-6 col-lg-3 col-md-6">
                         <div class="card">
-                            <div class="card-body px-3 py-4-5">
+                            <div class="card-body px-3 py-4-5" style="height: 130px">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="stats-icon green">
+                                    <div class="col-md-5">
+                                        <div class="stats-icon green" style="justify-content: center">
                                             <i class="iconly-boldAdd-User"></i>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <h6 class="text-muted font-semibold">Tổng User</h6>
                                         <h6 class="font-extrabold mb-0">{{ Auth::user()->count() }}</h6>
                                     </div>
@@ -83,12 +83,12 @@
                         <div class="card">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <div class="stats-icon red">
                                             <i class="iconly-boldProfile"></i>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <h6 class="text-muted font-semibold">Tổng số Ứng viên</h6>
                                         <h6 class="font-extrabold mb-0">{{$candidate}}</h6>
                                     </div>
@@ -104,7 +104,8 @@
                                 <h4>Profile Visit</h4>
                             </div>
                             <div class="card-body">
-                                <div id="chart-profile-visit"></div>
+                                <div id="chart-profile-visit">
+                                </div>
                             </div>
                         </div>
                     </div>

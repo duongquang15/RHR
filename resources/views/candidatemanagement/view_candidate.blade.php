@@ -65,6 +65,62 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <label>Level</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <select name="level_id" class="form-control">
+                                                    @foreach ($level as $l)
+                                                    @if ($l->id == $data[0]->level_id)
+                                                    <option value="{{ $l->id }}" selected>
+                                                        {{ $l->level_name }}
+                                                    </option>
+                                                    @else
+                                                    <option value="{{ $l->id }}">
+                                                        {{ $l->level_name }}
+                                                    </option>
+                                                    @endif
+
+
+                                                    @endforeach
+                                                </select>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-award"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Vị trí ứng tuyển</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <select name="job_id" class="form-control">
+                                                    @foreach ($job as $j)
+                                                    @if ($j->id == $data[0]->job_id)
+                                                    <option value="{{ $j->id }}" selected>
+                                                        {{ $j->name }}
+                                                    </option>
+                                                    @else
+                                                    <option value="{{ $l->id }}">
+                                                        {{ $j->name }}
+                                                    </option>
+                                                    @endif
+
+
+                                                    @endforeach
+                                                </select>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-award"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
 
                                     <div class="col-md-4">
@@ -249,19 +305,25 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <label>Status</label>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group has-icon-left">
                                             <div class="position-relative">
-                                                <input type="text" class="form-control" placeholder="Status" id="first-name-icon" name="status" value="{{ $data[0]->status }}">
+                                                <input type="text" class="form-control" placeholder="Status" id="first-name-icon" name="status"
+                                                 value="@if( $data[0]->status==1)ScanCV
+                                                    @elseif( $data[0]->status==2)Phỏng vấn
+                                                    @elseif( $data[0]->status==3)Offering
+                                                    @elseif( $data[0]->status==4)Pre Onboard
+                                                    @elseif( $data[0]->status==5)End
+                                                    @endif ">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-chat-square-dots"></i>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
 
                                     <div class="col-12 d-flex justify-content-end">
@@ -279,10 +341,10 @@
     <footer>
         <div class="footer clearfix mb-0 text-muted ">
             <div class="float-start">
-                <p>2021 &copy; Soeng Souy</p>
+                <p>2022 &copy; Dương Quang</p>
             </div>
             <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://soengsouy.com">Soeng Souy</a></p>
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://www.facebook.com/quangit30/">Dương Quang</a></p>
             </div>
         </div>
     </footer>

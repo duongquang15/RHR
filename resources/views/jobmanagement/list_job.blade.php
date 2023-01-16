@@ -66,6 +66,7 @@
 
                                 <th>Tên Job</th>
                                 <th>Bộ phận</th>
+                                <th>Mức độ</th>
                                 <th>Số lượng yêu cầu</th>
                                 {{-- <th>Skill</th> --}}
                               
@@ -91,6 +92,13 @@
                                 <td class="group_name">
                                     <option value="{{ $item->group->id }}">{{ $item->group->group_name }}</option>
                                 </td>
+                                <td class="priority">  @if( $item->priority==1)
+                                    <b style="color: red">Gấp</b>
+                                    @elseif( $item->priority==2)
+                                    <b style="color: green">Bình thường</b>
+                                    @else
+                                    <b style="color: gray">Không gấp </b>
+                                    @endif</td>
                                 <td class="amount">{{ $item->amount }}</td>
                                 <td class="start_time">
                                     <option value="{{ $item->id}}"> {{$item->request_date}} </option>
@@ -129,10 +137,10 @@
     <footer>
         <div class="footer clearfix mb-0 text-muted ">
             <div class="float-start">
-                <p>2021 &copy; Soeng Souy</p>
+                <p>2022 &copy; Dương Quang</p>
             </div>
             <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://soengsouy.com">Soeng Souy</a></p>
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://www.facebook.com/quangit30/">Dương Quang</a></p>
             </div>
         </div>
     </footer>

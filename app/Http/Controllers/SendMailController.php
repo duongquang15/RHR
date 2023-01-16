@@ -14,7 +14,6 @@ class SendMailController extends Controller
 {
     public function sendMail($id, $calendarId){
         $candidate=Candidate::find($id);
-        // dd($candidate);
         $candidateMail = $candidate->email;
         $calendar = Calendar::find($calendarId);
         $mailable = new SendMail($candidate, $calendar);
@@ -58,9 +57,7 @@ class SendMailController extends Controller
         $candidate->update([
             'desired_salary' => $request->desired_salary
         ]);
-        
         $this->offerMail($id);
-
 
         return redirect()->route('candidate.detailcandidate', [$id]);
     }
